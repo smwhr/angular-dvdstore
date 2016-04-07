@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dvdStore">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+</head>
+<body class="container">
+
+<section ng-controller="StoreController as store">
+
+  <div class="dvd" ng-repeat="dvd in store.products | limitTo:2 | orderBy:'price' track by $index">
+    <section ng-controller="TabController as tabCtrl">
+      <h1>{{$index}} - {{dvd.title | uppercase}}</h1>
+
+      <ul class="nav nav-tabs">
+        <li ng-class="{active : tabCtrl.isTab(1)}">
+          <a href ng-click="tabCtrl.setTab(1)">Produit</a>
+        </li>
+        <li ng-class="{active : tabCtrl.isTab(2)}"
+            ng-show="dvd.synopsis">
+          <a href ng-click="tabCtrl.setTab(2)">Résumé</a>
+        </li>
+        <li ng-class="{active : tabCtrl.isTab(3)}">
+          <a href ng-click="tabCtrl.setTab(3)">Équipe</a>
+        </li>
+      </ul>
+
+      <div class="panel" ng-show="tabCtrl.isTab(1)">
+        <div class="row">
+          <div class="col-xs-4">
+            <img ng-src="{{dvd.poster}}" 
+             ng-show="dvd.poster"
+             style="width:150px"/>    
+          </div>
+          <div class="col-xs-6">
+            <span ng-show="dvd.est_dispo">{{dvd.price | currency:"€"}}</span>
+            <form>
+              Qté : {{dvd.qty}}
+              <input class="form-control input-sm" id="inputsm" type="number" ng-model="dvd.qty" />
+              <input type="submit" 
+                     value="Mettre au panier"
+                     class="btn btn-primary" />
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" ng-show="tabCtrl.isTab(2)">
+        <p>{{dvd.synopsis}}</p>
+      </div>
+
+      <div class="panel" ng-show="tabCtrl.isTab(3)">
+      <h3>Réalisateur</h3>
+        <ul>
+          <li ng-repeat="dir in dvd.directors">
+            {{dir.first_name}} {{dir.last_name}}
+          </li>
+        </ul>
+        <h3>Acteurs</h3>
+        <ul>
+          <li ng-repeat="act in dvd.actors">
+            {{act.first_name}} {{act.last_name}}
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
