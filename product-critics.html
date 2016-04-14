@@ -1,0 +1,29 @@
+<div class="panel" ng-show="tabCtrl.isTab(4)">
+<h3>Critiques</h3>
+
+  <ul ns-show="dvd.critics.length > 0">
+    <li ng-repeat="crit in dvd.critics">
+      <strong>{{crit.author}}</strong> : 
+      {{crit.content}}
+    </li>
+  </ul>
+
+  <div ng-hide="dvd.critics.length > 0">
+    Pas de critiques pour le moment
+  </div>
+
+
+  <div ng-show="criticCtrl.critic_preview" class="well">
+    <strong>{{criticCtrl.critic_preview.author}}</strong> : 
+      {{criticCtrl.critic_preview.content}}
+  </div>
+
+  <form ng-submit="criticCtrl.addCritic(dvd)">
+    <label>Auteur</label>
+    <input type="text" class="form-control" ng-model="criticCtrl.critic_preview.author">
+    <label>Critique</label>
+    <textarea class="form-control" ng-model="criticCtrl.critic_preview.content"></textarea>
+    <input type="submit" class="btn btn-primary" value="Donner mon avis">
+  </form>
+
+</div>

@@ -1,6 +1,6 @@
 (function() {
 
-var app = angular.module("dvdStore", []);
+var app = angular.module("dvdStore", ['dvdStore-directives']);
 
 var films = [{
   "title": "Mulholland Drive",
@@ -23,6 +23,7 @@ var films = [{
          "last_name": "Harring"
         },
     ],
+    "critics":[]
   },
 
   {
@@ -38,27 +39,14 @@ var films = [{
                 ],
     "actors":[{first_name: "Leïla",last_name: "Bekhti"},
               {first_name: "Géraldine",last_name: "Nakache"}
-              ]
+              ],
+    "critics":[]
   }
 ];
 
 
 app.controller("StoreController", function(){
   this.products = films;
-});
-
-app.controller("TabController", function(){
-  this.tab = 1;
-
-  this.setTab = function(t){
-    //ping à google analytics
-    this.tab = t;
-  }
-
-  this.isTab = function(t){
-    return this.tab === t;
-  }
-
 });
 
 })();

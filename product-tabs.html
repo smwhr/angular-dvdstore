@@ -1,0 +1,27 @@
+<section>
+  <h1>{{$index}} - {{dvd.title | uppercase}}</h1>
+  <ul class="nav nav-tabs">
+    <li ng-class="{active : tabCtrl.isTab(1)}">
+      <a href ng-click="tabCtrl.setTab(1)">Produit</a>
+    </li>
+    <li ng-class="{active : tabCtrl.isTab(2)}"
+        ng-show="dvd.synopsis">
+      <a href ng-click="tabCtrl.setTab(2)">Résumé</a>
+    </li>
+    <li ng-class="{active : tabCtrl.isTab(3)}">
+      <a href ng-click="tabCtrl.setTab(3)">Équipe</a>
+    </li>
+    <li ng-class="{active : tabCtrl.isTab(3)}">
+      <a href ng-click="tabCtrl.setTab(4)">Critiques</a>
+    </li>
+  </ul>
+
+  <div class="panel" 
+       ng-show="tabCtrl.isTab(1)"
+       product-recap>
+  </div>
+  <product-synopsis></product-synopsis>
+  <product-casting></product-casting>
+  <product-critics></product-critics>
+  
+</section>

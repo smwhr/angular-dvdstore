@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-xs-4">
+    <img ng-src="{{dvd.poster}}" 
+     ng-show="dvd.poster"
+     style="width:150px"/>    
+  </div>
+  <div class="col-xs-6">
+    <span ng-show="dvd.est_dispo">{{dvd.price | currency:"€"}}</span>
+    <form>
+      Qté : {{dvd.qty}}
+      <input class="form-control input-sm" id="inputsm" type="number" ng-model="dvd.qty" />
+      <input type="submit" 
+             value="Mettre au panier"
+             class="btn btn-primary" />
+    </form>
+  </div>
+</div>
