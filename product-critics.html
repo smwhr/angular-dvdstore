@@ -13,7 +13,7 @@
   </div>
 
 
-  <div ng-show="criticCtrl.critic_preview" class="well">
+  <div ng-show="criticCtrl.critic_preview.author || criticCtrl.critic_preview.content" class="well">
     <strong>{{criticCtrl.critic_preview.author}}</strong> : 
       {{criticCtrl.critic_preview.content}}
   </div>

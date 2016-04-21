@@ -1,0 +1,7 @@
+<section>
+  <div class="dvd" ng-repeat="dvd in store.products | limitTo:2 | orderBy:'price' track by $index">'
+    <h1>{{dvd.title}}</h1>
+    <product-tabs></product-tabs>
+  </div>
+
+</section>

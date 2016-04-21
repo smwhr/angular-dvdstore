@@ -24,7 +24,7 @@ app.directive("productRecap", function(){
   }
 });
 
-app.directive("productCritics", function(){
+app.directive("productCritics", ["$http", function($http){
   return {
     restrict: "E",
     templateUrl: "product-critics.html",
@@ -33,11 +33,28 @@ app.directive("productCritics", function(){
 
       this.addCritic = function(product){
         product.critics.push(this.critic_preview);
+
+        $http({
+          method: "POST",
+          url:"/critic/save",
+          data:this.critic_preview
+        }).success(function(data){
+          //yeaye !
+        }).error(function(data){
+          // :'(
+        })
+
+        this.critic_preview = {};
+
+
+
+
+
       }
     },
     controllerAs:"criticCtrl"
   }
-});
+}]);
 
 
 app.directive("productTabs", function(){
